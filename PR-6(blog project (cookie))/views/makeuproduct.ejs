@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../uploads/shopping-online.png" type="image/x-icon">
+    <title>Makeup Product - Admin Panel</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #17a2b8;
+            color: #fff;
+            padding: 15px 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            display: inline-block;
+        }
+
+        .header .user-actions {
+            float: right;
+        }
+
+        .user-actions a {
+            color: #fff;
+            margin-left: 15px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .user-actions a:hover {
+            color: #ffc107;
+        }
+
+        .content {
+            margin-top: 80px;
+            padding: 20px;
+        }
+
+        .product-details {
+            display: flex;
+            flex-direction: row;
+            margin-top: 20px;
+        }
+
+        .product-image {
+            width: 50%;
+            padding: 10px;
+        }
+
+        .product-description {
+            width: 50%;
+            padding: 10px;
+        }
+
+        .product-description h2 {
+            font-size: 2rem;
+            color: #17a2b8;
+        }
+
+        .product-description p {
+            font-size: 1.1rem;
+            color: #6c757d;
+        }
+
+        .btn-back {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .btn-back:hover {
+            background-color: #218838;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Shopping Admin Panel</h1>
+        <div class="user-actions">
+            <a href="/profile"><i class="fas fa-user-circle"></i> Profile</a>
+            <a href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="product-details">
+            <div class="product-image">
+                <img src="https://i.pinimg.com/736x/01/c3/6c/01c36c5b626ae936dad2de620f5905ea.jpg" alt="Makeup Product Image" class="img-fluid">
+            </div>
+            <div class="product-description">
+                <h2>Top-notch Makeup Products</h2>
+                <p>
+                    These makeup products are designed to enhance your beauty and provide flawless skincare. With high-quality ingredients and 
+                    a luxurious feel, our makeup range ensures you look stunning and feel confident all day long.
+                </p>
+                <a href="/dashboard" class="btn-back">Back to Products</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
