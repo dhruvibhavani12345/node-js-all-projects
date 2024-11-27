@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../uploads/shopping-online.png" type="image/x-icon">
+    <title>Car Details</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #17a2b8;
+            color: #fff;
+            padding: 15px 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            display: inline-block;
+        }
+
+        .header .user-actions {
+            float: right;
+        }
+
+        .user-actions a {
+            color: #fff;
+            margin-left: 15px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .user-actions a:hover {
+            color: #ffc107;
+        }
+
+        .content {
+            margin-top: 80px;
+            padding: 20px;
+        }
+
+        .car-details {
+            background: #fff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .car-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .car-title {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #17a2b8;
+        }
+
+        .car-description {
+            font-size: 1rem;
+            margin-top: 10px;
+            color: #6c757d;
+        }
+
+        .car-specifications {
+            margin-top: 20px;
+        }
+
+        .spec-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .spec-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .spec-list li {
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .btn-buy {
+            margin-top: 20px;
+            background-color: #28a745;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .btn-buy:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Shopping Admin Panel</h1>
+        <div class="user-actions">
+            <a href="/profile"><i class="fas fa-user-circle"></i> Profile</a>
+            <a href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="row">
+            <div class="col-md-6 car-image">
+                <img src="https://i.pinimg.com/736x/18/b4/69/18b4692e6a7c7b8eea41ca4ab44684c2.jpg" alt="Car Image">
+            </div>
+            <div class="col-md-6 car-details">
+                <h1 class="car-title">Luxury Sports Car</h1>
+                <p class="car-description">
+                    Experience the thrill of driving with this state-of-the-art luxury sports car. Equipped with the
+                    latest technology and a sleek design, this car offers unmatched performance and comfort.
+                </p>
+                <div class="car-specifications">
+                    <h2 class="spec-title">Specifications:</h2>
+                    <ul class="spec-list">
+                        <li>Engine: 4.0L Twin-Turbo V8</li>
+                        <li>Horsepower: 500 HP</li>
+                        <li>Top Speed: 320 km/h</li>
+                        <li>Fuel Efficiency: 10 km/l</li>
+                        <li>Price: $120,000</li>
+                    </ul>
+                </div>
+                <a href="/dashboard" class="btn btn-buy">Back To Products</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

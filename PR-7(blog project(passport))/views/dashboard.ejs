@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../uploads/shopping-online.png" type="image/x-icon">
+    <title>Shopping Products - Admin Panel</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #17a2b8;
+            color: #fff;
+            padding: 15px 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            display: inline-block;
+        }
+
+        .header .user-actions {
+            float: right;
+        }
+
+        .user-actions a {
+            color: #fff;
+            margin-left: 15px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+
+        .user-actions a:hover {
+            color: #ffc107;
+        }
+
+        .product-card {
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: auto;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .product-title {
+            padding: 15px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-align: center;
+            color: #17a2b8;
+        }
+
+        .carousel-inner img {
+            border-radius: 10px;
+        }
+
+        .carousel-item img {
+            max-height: 660px;
+            object-fit: cover;
+            margin: auto;
+        }
+
+        .btn-primary {
+            background-color: #17a2b8;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #138496;
+        }
+
+        .btn-add {
+            margin-bottom: 20px;
+            background-color: #28a745;
+            color: #fff;
+        }
+
+        .btn-add:hover {
+            background-color: #218838;
+        }
+
+        .sidebar {
+            height: 100vh;
+            background-color: #17a2b8;
+            color: #fff;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            width: 240px;
+            padding-top: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .sidebar a {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar a i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .sidebar a:hover {
+            background-color: #495057;
+        }
+
+        .content {
+            margin-left: 260px;
+            margin-top: 80px;
+            padding: 20px;
+        }
+        .product-description {
+        font-size: 0.9rem;
+        color: #6c757d;
+        text-align: center;
+    }
+
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <a href="/dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+        <a href="/add-product"><i class="fas fa-plus"></i> Add Product</a>
+        <a href="/view"><i class="fas fa-box-open"></i> View Products</a>
+    </div>
+
+    <div class="header">
+        <h1>Shopping Admin Panel</h1>
+        <div class="user-actions">
+            <a href="/profile"><i class="fas fa-user-circle"></i> Profile</a>
+            <a href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+    </div>
+
+    <div class="content">
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel" style="padding-bottom: 40px;">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="d-block w-100"
+                        src="https://thumbs.dreamstime.com/b/super-sale-cosmetics-banner-shopping-season-makeup-accessories-equipment-beauty-facial-fashion-vector-illustration-140446554.jpg"
+                        alt="First slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100"
+                        src="https://exchange4media.gumlet.io/news-photo/files/1528100380_Y5nDup_Denim-to-Work-Ad-creative-1.jpg?w=400&dpr=2.6"
+                        alt="Second slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100"
+                        src="https://i.pinimg.com/736x/f0/f9/e4/f0f9e45724771f16745ad3f6f640d3ce.jpg"
+                        alt="Second slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100"
+                        src="https://i.ytimg.com/vi/2JbhsIuFv48/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLByuQ2MD0N_5MiGlWcLLfqeiFj0VQ"
+                        alt="Third slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100"
+                        src="https://img.freepik.com/free-vector/hand-drawn-supermarket-landing-page-template_23-2149380696.jpg"
+                        alt="Fourth slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100"
+                        src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/shoes-craze-sale-facebook-ad-design-template-b1d1738fd5e9e0f6e3152ec502a1c2e1_screen.jpg?ts=1567579016"
+                        alt="Fifth slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="https://www.adbanao.com/img/industryimages/home_decor.webp"
+                        alt="Six slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100"
+                        src="https://img.freepik.com/premium-vector/car-rental-cover-banner-web-poster-promotion-post-template_416835-218.jpg"
+                        alt="Seven slide">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <% const products = [ 
+                { 
+                    title: "Cars",
+                    poster: "https://i.pinimg.com/736x/18/b4/69/18b4692e6a7c7b8eea41ca4ab44684c2.jpg",
+                    description: "High-quality cars with modern features for ultimate comfort and performance."
+                }, 
+                { 
+                    title: "Bikes",
+                    poster: "https://i.pinimg.com/736x/6c/5e/43/6c5e432be59e5fa5fdb7cd36410a2b51.jpg",
+                    description: "Explore a wide range of high-speed bikes perfect for any terrain."
+                }, 
+                { 
+                    title: "Cycles",
+                    poster: "https://i.pinimg.com/564x/d1/13/0f/d1130f5e20917ed0a5987f7dd07bed5d.jpg",
+                    description: "Durable and stylish cycles ideal for all age groups and lifestyles."
+                },
+                { 
+                    title: "Makeup Products",
+                    poster: "https://i.pinimg.com/736x/01/c3/6c/01c36c5b626ae936dad2de620f5905ea.jpg",
+                    description: "Top-notch makeup products for flawless beauty and skincare."
+                } 
+            ];
+            products.forEach(product => { %>
+                <div class="col-md-3 mb-4">
+                    <div class="product-card">
+                        <img src="<%= product.poster %>" alt="<%= product.title %> Poster">
+                        <div class="product-title">
+                            <%= product.title %>
+                        </div>
+                        <div class="product-description">
+                            <%= product.description.substring(0, 50) %>...
+                            <a href="/product/<%= product.title %>">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+        
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
