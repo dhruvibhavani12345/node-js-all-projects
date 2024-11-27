@@ -1,22 +1,16 @@
-const mongoose = require('mongoose');
+const mongoose=require('mongoose')
 
-mongoose.connect('mongodb://localhost/loginsystem-cookie', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
+mongoose.connect('mongodb://localhost/login-blog')
 
-const database = mongoose.connection;
 
-database.on('connected', () => {
-    console.log('Database is connected');
-});
+const database=mongoose.connection
 
-database.on('error', (err) => {
-    console.error('Database connection error:', err);
-});
 
-database.on('disconnected', () => {
-    console.log('Database is disconnected');
-});
-
-module.exports = database;
+database.on('connected',(err)=>{
+    if (err) {
+        console.log(err);   
+    }
+    console.log('db is connected');
+})
+  
+module.exports=database

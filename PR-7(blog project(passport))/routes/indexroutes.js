@@ -1,42 +1,37 @@
-const express = require('express');
+const express = require('express')
+const { registerpage, registerusers, loginpage, loginuser, dashboardpage, addblog, addblougesdata, deletdata, editpage, update,logout,readmore } = require('../controller/authcontroller')
 
-const routes = express.Router();
+const routes = express.Router()
 
-const { loginPage, registerPage, dashboardPage, registerUser, loginUser, logoutUser, carProduct, bikeProduct, cycleProduct, makeupProduct,  
-    addProduct, addRecord, deleteRecord, viewPage, editRecord, updateRecord
- } = require('../controllers/Authcontroller');
+const passport = require('passport');
 
 const multer = require('multer');
 
 const st = multer.diskStorage({
     destination: (req, res, cb) => {
-        cb(null, './uploads')
+        cb(null, 'uploads')
     },
     filename: (req, file, cb) => {
-        const uniq = Math.floor(Math.random() * 100000000);
-        cb(null, `${file.fieldname}-${uniq}`);
+        const uniqname = Date.now();
+        cb(null, `${file.fieldname}-${uniqname}`);
     }
 })
+const fileUpload = multer({ storage: st }).single('image');
 
-const upload = multer({ storage: st }).single('image');
+routes.get('/', registerpage)
+routes.get('/login', loginpage)
+routes.post('/ragister', registerusers)
+routes.post('/loginuser', passport.authenticate('local', { failureRedirect: '/' }), loginuser)
+routes.get('/dashboard', passport.checkUser, dashboardpage)
 
-routes.get('/', registerPage)
-routes.get('/login', loginPage)
-routes.get('/dashboard', dashboardPage)
-routes.post('/registeruser', registerUser)
-routes.post('/loginuser', loginUser)
-routes.get('/logout', logoutUser)
-routes.get('/product/Cars',carProduct)
-routes.get('/product/Bikes',bikeProduct)
-routes.get('/product/Cycles',cycleProduct)
-routes.get('/product/Makeup%20Products',makeupProduct)
+routes.get('/add', addblog)
+routes.post('/addblouges',fileUpload, addblougesdata)
+routes.get('/deletdata/:id', deletdata)
+routes.get('/editpage/:id', editpage)
+routes.post('/up',fileUpload, update)
 
-routes.get('/add-product',addProduct)
-routes.post('/insertRecord', upload, addRecord);
-routes.get('/deleteRecord', deleteRecord);
-routes.get('/view', viewPage);
-routes.get('/editRecord', editRecord);
-routes.post('/updateRecord', upload, updateRecord);
+routes.get('/logout',logout)
+routes.get('/readmore/:id',readmore)
 
 
-module.exports = routes; 
+module.exports = routes   
