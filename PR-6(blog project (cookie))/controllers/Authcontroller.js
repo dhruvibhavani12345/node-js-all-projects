@@ -8,6 +8,7 @@ const registerPage = (req, res) => {
 }
 
 const loginPage = (req, res) => {
+    console.log(req.cookies['auth']);
     if (req.cookies['auth']) {
         return res.redirect('/dashboard')
     }

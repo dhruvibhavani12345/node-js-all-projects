@@ -20,8 +20,8 @@ const st = multer.diskStorage({
 
 const upload = multer({ storage: st }).single('image');
 
-routes.get('/', registerPage)
-routes.get('/login', loginPage)
+routes.get('/', loginPage)
+routes.get('/register', registerPage)
 routes.get('/dashboard', dashboardPage)
 routes.post('/registeruser', registerUser)
 routes.post('/loginuser', loginUser)
