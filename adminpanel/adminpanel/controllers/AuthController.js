@@ -9,6 +9,7 @@ const loginPage = (req,res) => {
 const registerPage = (req,res) => {
     return res.render('register')
 }
+
 const registerUser = async(req,res) => {
     try{
         const {name,email,password,cpassword} = req.body
@@ -28,8 +29,8 @@ const registerUser = async(req,res) => {
         console.log(err);
         return false;
     }
-    
 }
+
 const loginUser = (req,res) =>{
     return res.redirect('/dashboard')
 }

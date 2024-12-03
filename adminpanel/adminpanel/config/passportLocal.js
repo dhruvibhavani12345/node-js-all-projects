@@ -23,7 +23,6 @@ passport.use(new passportLocal({
 passport.serializeUser((user,done)=>{
     return done(null,user.id);
 })
-
 passport.deserializeUser(async(id,done)=>{
     try{
         const user = await UserModel.findById(id);
@@ -33,7 +32,6 @@ passport.deserializeUser(async(id,done)=>{
         return done(null,false);
     }
 })
-
 
 passport.checkUser = (req,res,next) => {
         if(!req.isAuthenticated()){
