@@ -9,10 +9,17 @@ app.set('view engine','ejs')
 const path = require('path');
 
 const db = require('./config/db');
+app.use(express.urlencoded());
+
 
 const cookieParser = require('cookie-parser');
+const flash = require('connect-flash');
+
+
+app.use('/uploads',express.static(path.join(__dirname,'uploads')));
 
 app.use('/',express.static(path.join(__dirname,'public')));
+
 app.use(cookieParser());
 const passport = require('passport');
 const passportLocal = require('./config/passportLocal');
@@ -28,7 +35,9 @@ app.use(session({
 app.use(passport.session());
 app.use(passport.initialize());
 app.use(passport.setUser);
-app.use(express.urlencoded());
+
+
+app.use(flash());
 
 app.use('/',require('./routes/indexRoute'));
 
