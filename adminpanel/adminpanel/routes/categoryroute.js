@@ -7,8 +7,8 @@ const { categoryPage, addCategory, insertCategory, deleteCategory, editCategory,
 routes.get('/', categoryPage);
 routes.get('/add', addCategory);
 routes.post('/addCategory', insertCategory);
-routes.get('/deleteCategory', deleteCategory);
-routes.get('/edit', editCategory);
+routes.get('/deletecategory', deleteCategory);
+routes.get('/editcategory', editCategory);
 routes.post('/updateCategory', updateCategory);
 routes.get('/changeStatus', changeStatus);
 

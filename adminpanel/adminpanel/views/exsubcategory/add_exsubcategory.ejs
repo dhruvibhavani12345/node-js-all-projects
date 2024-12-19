@@ -38,8 +38,6 @@
                         <% if(locals.success !="" ) { %>
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
                                 <%= locals.success %>
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                        aria-label="Close"></button>
                             </div>
                             <% } %>
 
@@ -59,7 +57,6 @@
                                                             <%= cat.category %>
                                                         </option>
                                                         <% }) %>
-
                                                 </select>
                                             </div>
                                         </div>
@@ -68,7 +65,7 @@
                                             <label for="fname"
                                                 class="col-sm-3 text-end control-label col-form-label">Subcategory</label>
                                             <div class="col-sm-9">
-                                                <select name="subcategory" class="form-control">
+                                                <select name="subcategory" class="form-control" id="subcategory">
                                                     <option value="">---select subcategory---</option>
                                                     <% subcategory.map((val)=>{ %>
                                                         <option value="<%= val._id %>">

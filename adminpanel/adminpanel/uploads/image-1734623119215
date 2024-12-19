@@ -1,0 +1,16 @@
+h2 {
+    text-align: center;
+    font-size: 40px;
+    color: black;
+    text-transform: uppercase;
+}
+
+div {
+    color: red;
+    font-size: 50px;
+    text-decoration: underline;
+}
+
+.none {
+    display: none;
+}

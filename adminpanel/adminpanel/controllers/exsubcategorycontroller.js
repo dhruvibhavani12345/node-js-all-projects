@@ -59,29 +59,31 @@ const deleteexsubCategory= async (req,res)=>{
   }
 }
 
-const editexsubCategory = async(req,res)=>{
-  try{
-   const id =req.query.id;
-   let category = await CategoryModel.find({});
-   let subcategory = await SubcategoryModel.find({});
-   let single = await ExSubcategoryModel.findById(id).populate("categoryId").populate("subcategoryId");
-   return res.render('exsubcategory/edit_exsubcategory',{
-    category,
-    subcategory,
-    single
-   })
-  }catch(err){
-    console.log(err);
-    return false;
+const  editexsubCatagory = async (req , res) =>{
+  try {
+      const id = req.query.id;
+      let category = await CategoryModel.find({});
+      let subcategory = await SubcategoryModel.find({});
+      let single = await ExSubcategoryModel.findById(id).populate("categoryId").populate("subcategoryId")
+      return res.render('exsubcategory/edit_exsubcategory', {
+          category,
+          subcategory,
+          single 
+      })
+  } catch (err) {
+      console.log(err);
+      return false;
   }
 }
+
 
 const updateexsubCategory = async (req,res)=>{
   try{
     const {editid, category , subcategory , exsubcategory} = req.body;
+    console.log(req.body);
     await ExSubcategoryModel.findByIdAndUpdate(editid,{
-      category : category,
-      subcategory: subcategory , 
+      categoryId : category,
+      subcategoryId: subcategory , 
       exsubcategory : exsubcategory,
     })
     return res.redirect('/exsubcategory')
@@ -111,5 +113,5 @@ const changeStatus = async (req, res) => {
 }
 
 module.exports = {
-    exsubcategory, addExSubcategory ,insertexSubcategory , deleteexsubCategory , editexsubCategory , updateexsubCategory ,changeStatus, 
+    exsubcategory, addExSubcategory ,insertexSubcategory , deleteexsubCategory ,  editexsubCatagory , updateexsubCategory ,changeStatus, 
   };

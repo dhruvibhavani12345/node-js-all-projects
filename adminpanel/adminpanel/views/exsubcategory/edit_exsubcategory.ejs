@@ -38,32 +38,30 @@
                         <% if(locals.success !="" ) { %>
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
                                 <%= locals.success %>
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                        aria-label="Close"></button>
                             </div>
                             <% } %>
 
                                 <form action="/exsubcategory/updateexsubcategory" method="post" class="form-horizontal">
-                                    <input type="text" name="editid" value="<%= single._id %>" hidden/>
+                                    <input type="hidden" name="editid" value="<%= single._id %>"/>
                                     <div class="card-body">
                                         <h4 class="card-title">Add Subcategory</h4>
                                         <div class="form-group row">
                                             <label for="fname"
                                                 class="col-sm-3 text-end control-label col-form-label">Category</label>
                                             <div class="col-sm-9">
-                                                <select name="subcategory" class="form-control">
-                                                    <option value="">---select subcategory---</option>
-                                                    <% category.map((cat) => { %>
-                                                        <% if (single.subcategoryId && cat.category === single.subcategoryId.category) { %>
-                                                            <option selected value="<%= cat._id %>">
-                                                                <%= cat.category %>
-                                                            </option>
-                                                        <% } else { %>
-                                                            <option value="<%= cat._id %>">
-                                                                <%= cat.category %>
-                                                            </option>
-                                                        <% } %>
-                                                    <% }) %>    
+                                                <select name="category" class="form-control">
+                                                    <option value="">---select category---</option>
+                                                   <% category.map((cat) => { %>
+                                                    <% if (cat.category==single.categoryId.category) { %>
+                                                      <option selected value="<%= cat.id %>">
+                                                          <%= cat.category %>
+                                                      </option>
+                                                      <% } else { %>
+                                                          <option value="<%= cat.id %>">
+                                                              <%= cat.category %>
+                                                          </option>
+                                                          <% } %>
+                                                              <% }) %>
                                                 </select>
                                             </div>
                                         </div>
@@ -72,19 +70,18 @@
                                                 class="col-sm-3 text-end control-label col-form-label">subCategory</label>
                                             <div class="col-sm-9">
                                                 <select name="subcategory" class="form-control">
-                                                    <option value="">---select subcategory---</option>
-                                                    <% subcategory.map((cat) => { %>
-                                                        <% if (single.subcategoryId && cat.subcategory === single.subcategoryId.subcategory) { %>
-                                                            <option selected value="<%= cat._id %>">
-                                                                <%= cat.subcategory %>
-                                                            </option>
-                                                        <% } else { %>
-                                                            <option value="<%= cat._id %>">
-                                                                <%= cat.subcategory %>
-                                                            </option>
-                                                        <% } %>
-                                                    <% }) %>
-                                                    
+                                                    <option value="">---select subcatagory---</option>
+                                                   <% subcategory.map((cat) => { %>
+                                                    <% if (cat.subcategory==single.subcategoryId.subcategory) { %>
+                                                      <option selected value="<%= cat.id %>">
+                                                          <%= cat.subcategory %>
+                                                      </option>
+                                                      <% } else { %>
+                                                          <option value="<%= cat.id %>">
+                                                              <%= cat.subcategory %>
+                                                          </option>
+                                                          <% } %>
+                                                              <% }) %>
                                                 </select>
                                             </div>
                                             
@@ -111,12 +108,8 @@
                                     </div>
                                 </form>
                     </div>
-
-
                 </div>
-
             </div>
-
         </div>
         <!-- ============================================================== -->
         <!-- End Container fluid  -->
@@ -134,3 +127,60 @@
     </div>
 
     <%- include('../footer') %>
+
+
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script>
+        const category = (req, res) => {
+            let catagory = document.getElementById("catagory").value;
+            $.ajax({
+                type: 'GET',
+                url: `/product/ajaxgetCatagory?id=${catagory}`,
+                success: function (res) {
+                    let tbl = "";
+                    let catagory = res.catagory
+                    tbl += `<option value="">---- select catagory ----</option>`;
+                    catagory.map((subcat) => {
+                        console.log(subcat);
+
+                        tbl += `
+          <option value="${subcat._id}">${subcat.subcatagory}</option>
+        `
+                    })
+                    document.getElementById("subcatagory").innerHTML = tbl;
+
+
+
+                }
+            })
+        }
+        const subcategory = (req, res) => {
+            let subcatagory = document.getElementById("subcatagory").value;
+            $.ajax({
+                type: 'GET',
+                url: `/product/ajaxgetsubCatagory?id=${subcatagory}`,
+                success: function (res) {
+                    let tbl = "";
+                    let subcatagory = res.subcatagory
+                    tbl += `<option value="">---- select subcatagory ----</option>`;
+                    subcatagory.map((exsubcat) => {
+                        console.log(exsubcat);
+
+                        tbl += `
+          <option value="${exsubcat._id}">${exsubcat.exsubcatagory}</option>
+        `
+                    })
+                    document.getElementById("exsubcatagory").innerHTML = tbl;
+
+
+
+                }
+            })
+        }
+
+
+
+
+    </script>

@@ -3,6 +3,9 @@ const SubCategoryModel = require("../models/subcategorymodel");
 const ExSubCategoryModel = require("../models/exsubcategorymodel");
 const ProductModel = require("../models/productmodel");
 
+const fs = require('fs')
+const path = require('path')
+
 
 const productPage = async (req, res) => {
   try {
@@ -54,61 +57,123 @@ const addProduct = async (req, res) => {
 
 const deleteProduct = async (req, res) => {
   try {
-      const id = req.query.id;
-      await ProductModel.findByIdAndDelete(id);
-      req.flash('success', "product Successfully delete");
-      return res.redirect('/product');
+    const id = req.query.id;
+    await ProductModel.findByIdAndDelete(id);
+    req.flash('success', "product Successfully delete");
+    return res.redirect('/product');
   } catch (err) {
-      console.log(err);
-      return false;
+    console.log(err);
+    return false;
   }
 }
 const editProduct = async (req, res) => {
   try {
-      const id = req.query.id;
-      let single = await ProductModel.findById(id);
-      return res.render('product/edit_product', {
-          single
-      });
+    const id = req.query.id;
+    let category = await CategoryModel.find({});
+    let subcategory = await SubCategoryModel.find({});
+    let exsubcategory = await ExSubCategoryModel.find({});
+    let single = await ProductModel.findById(id).populate("categoryId").populate("subcategoryId").populate("exsubcategoryId");
+    return res.render('product/edit_product', {
+      category,
+      subcategory,
+      exsubcategory,
+      single
+    })
   } catch (err) {
-      console.log(err);
-      return false;
+    console.log(err);
+    return false;
   }
 }
 
 const updateProduct = async (req, res) => {
-  try {
-      await ProductModel.findByIdAndUpdate(req.body.editid, {
-          product: req.body.product
+ try{
+    const {editid, category, subcategory, exsubcategory , name, price, product,description} = req.body;
+    if(req.file){
+      const single = await ProductModel.findById(editid)
+        fs.unlinkSync(single.image)
+        await ProductModel.findByIdAndUpdate(editid,{
+          categoryId : category,
+          subcategoryId : subcategory,
+          exsubcategoryId : exsubcategory,
+          name : name,
+          price : price,
+          description : description,
+          image : req.file.path,
+        })
+        return res.redirect('/product');
+      
+    }else{
+      const single = await ProductModel.findById(editid)
+      
+      await ProductModel.findByIdAndUpdate(editid,{
+        categoryId : category,
+        subcategoryId : subcategory,
+        exsubcategoryId : exsubcategory,
+        name : name,
+        price : price,
+        description : description,
+        image : single.image,
       })
-      req.flash('success', "product Successfully update");
       return res.redirect('/product');
-  } catch (err) {
-      console.log(err);
-      return false;
-  }
+    
+    }
+ }catch(err){
+  console.log(err);
+  return false;
+ }
 }
 
 const changeStatus = async (req, res) => {
   try {
-      const status = req.query.status;
-      const id = req.query.id;
-      if (status == "active") {
-          await ProductModel.findByIdAndUpdate(id, { status: "deactive" })
-          req.flash('success', "Status Successfully changed");
-          return res.redirect('/product')
-      } else {
-          await ProductModel.findByIdAndUpdate(id, { status: "active" })
-          req.flash('success', "Status Successfully changed");
-          return res.redirect('/product')
-      }
+    const status = req.query.status;
+    const id = req.query.id;
+    if (status == "active") {
+      await ProductModel.findByIdAndUpdate(id, { status: "deactive" })
+      req.flash('success', "Status Successfully changed");
+      return res.redirect('/product')
+    } else {
+      await ProductModel.findByIdAndUpdate(id, { status: "active" })
+      req.flash('success', "Status Successfully changed");
+      return res.redirect('/product')
+    }
   } catch (err) {
-      console.log(err);
-      return false;
+    console.log(err);
+    return false;
   }
+}
+
+const ajaxgetCategory = async(req,res)=>{
+  try{
+    let id = req.query.id;
+    let category = await SubCategoryModel.find({categoryId:id});
+    return res.send({
+      success : true,
+      message : " record fetch",
+      category
+    })
+  }catch(err){
+    console.log(err);
+    return false;
+  }
+}
+
+const ajaxgetsubCategory =  async(req,res)=>{
+  try{
+    let id = req.query.id;
+    let subcategory = await ExSubCategoryModel.find({subcategoryId:id});
+    return res.send({
+      success : true,
+      message : "record fetch",
+      subcategory,
+    })
+  } catch(err){
+    console.log(err);
+    return false;
+  }
+
 }
 module.exports = {
   productPage,
   addproductPage,
-  addProduct,deleteProduct, editProduct, updateProduct, changeStatus
+  addProduct, deleteProduct, editProduct, updateProduct, changeStatus , ajaxgetCategory , ajaxgetsubCategory
 };
