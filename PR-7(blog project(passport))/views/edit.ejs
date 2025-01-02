@@ -4,149 +4,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Blog</title>
+    <title>Edit producte</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        /* General Styles */
+        /* Body Background */
         body {
-            background: linear-gradient(to right, #2b5876, #4e4376);
+            background: linear-gradient(to right, #141e30, #243b55);
+            font-family: 'Arial', sans-serif;
+            color: #fff;
             margin: 0;
             padding: 0;
         }
 
-        a{
-            text-decoration: none;
-        }
-
-        h1 {
-            color: #fff;
-            font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-            margin-bottom: 30px;
-        }
-
-        /* Header */
+        /* Header Styles */
         .header {
-            background: linear-gradient(to right, #2b5876, #4e4376); 
-            color: white;
+            background-color: #1e293b;
             padding: 15px 30px;
             display: flex;
-            align-items: center;
             justify-content: space-between;
+            align-items: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         .header .logo {
             font-size: 1.8rem;
             font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            color: #e0e7ff;
         }
 
         .header .logout-btn {
-            background: linear-gradient(to right, #ff9966, #ff5e62);
-            color: white;
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
             border: none;
-            border-radius: 5px;
+            color: #fff;
+            border-radius: 8px;
             padding: 8px 15px;
-            font-size: 0.9rem;
+            transition: 0.3s;
+            font-weight: bold;
         }
 
         .header .logout-btn:hover {
-            background: linear-gradient(to right, #ff5e62, #ff9966);
-
+            transform: scale(1.05);
+            background: linear-gradient(45deg, #ff4b2b, #ff416c);
         }
 
         /* Card Design */
         .card {
-            border: none;
-            border-radius: 25px;
-            background: linear-gradient(135deg, #d2ebff, #9fdbfc);       
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-            margin: 0 auto;
-            max-width: 600px;
-            overflow: hidden;
+            background: linear-gradient(to bottom right, #334155, #1e293b);
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            max-width: 700px;
+            margin: auto;
+            margin-top: 30px;
         }
 
-        .card img {
-            height: auto;
-            border-top-left-radius: 25px;
-            border-top-right-radius: 25px;
+        .card h1 {
+            font-size: 2rem;
+            color: #fff;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Form Elements */
+        .form-label {
+            font-weight: bold;
+            color: #93c5fd;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            background-color: #1e293b;
+            border: 1px solid #475569;
+            color: #fff;
+        }
+
+        .form-control:focus {
+            background-color: #1e293b;
+            box-shadow: 0 0 5px rgba(147, 197, 253, 0.8);
+            border-color: #3b82f6;
+        }
+
+        .form-group img {
+            max-height: 200px;
+            border-radius: 10px;
+            margin-top: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         /* Button Styles */
         .btn-primary {
-            background-color: #6a11cb;
-            background-image: linear-gradient(to right, #6a11cb, #2575fc); /* Same gradient button */
+            background: linear-gradient(45deg, #3b82f6, #2563eb);
             border: none;
-            color: #fff;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 10px;
+            transition: all 0.3s;
         }
 
         .btn-primary:hover {
-            background-image: linear-gradient(to right, #2575fc, #6a11cb); /* Hover effect */
-        }
-
-        /* Form Elements */
-        .form-control {
-            border-radius: 15px;
-        }
-
-        .form-label {
-            font-weight: bold;
-            color: #6a11cb; /* Matching color for labels */
-        }
-
-        .form-group {
-            margin-bottom: 20px;
+            transform: scale(1.05);
+            background: linear-gradient(45deg, #2563eb, #3b82f6);
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
             .card {
-                width: 100%;
-                margin: 20px 0;
+                padding: 15px;
+                margin: 20px;
+            }
+
+            .header {
+                flex-direction: column;
+                text-align: center;
             }
         }
     </style>
 </head>
 
 <body>
- 
+    <!-- Header -->
     <div class="header">
         <div class="logo">Admin Panel</div>
         <a href="/logout" class="logout-btn">Logout</a>
     </div>
 
-    <div class="container py-5" style="padding-top: 1rem !important;">
-        <h1 class="text-center">Edit Blog</h1>
-        <div class="card">
-            <form action="/up" method="post" enctype="multipart/form-data" class="p-4">
-                <input type="hidden" value="<%= single.id %>" name="id">
-                
-                <div class="form-group">
-                    <label for="name" class="form-label">Blog Name:</label>
-                    <input type="text" class="form-control" id="name" name="name" value="<%= single.name %>">
-                </div>
+    <!-- Edit Blog Form -->
+    <div class="card">
+        <h1>Edit Blog</h1>
+        <form action="/up" method="post" enctype="multipart/form-data">
+            <input type="hidden" value="<%= single.id %>" name="id">
 
-                <div class="form-group">
-                    <label for="description" class="form-label">Blog Description:</label>
-                    <textarea class="form-control" id="description" name="description" rows="4"><%= single.description %></textarea>
-                </div>
+            <div class="form-group mb-4">
+                <label for="name" class="form-label">product Name:</label>
+                <input type="text" class="form-control" id="name" name="name" value="<%= single.name %>">
+            </div>
 
-                <div class="form-group">
-                    <label for="image" class="form-label">Image:</label>
-                    <input type="file" class="form-control" id="image" name="image">
-                    <div class="mt-3 text-center">
-                        <img src="/<%= single.image %>" alt="Current Image" class="img-fluid rounded" style="max-height: 150px;">
-                    </div>
-                </div>
+            <div class="form-group mb-4">
+                <label for="price" class="form-label">product Price:</label>
+                <input type="text" class="form-control" id="price" name="price" value="<%= single.price %>">
+            </div>
 
+            <div class="form-group mb-4">
+                <label for="description" class="form-label">product Description:</label>
+                <textarea class="form-control" id="description" name="description" rows="4"><%= single.description %></textarea>
+            </div>
+
+            <div class="form-group mb-4">
+                <label for="image" class="form-label">Image:</label>
+                <input type="file" class="form-control" id="image" name="image">
                 <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Update Blog</button>
+                    <img src="/<%= single.image %>" alt="Current Image">
                 </div>
-            </form>
-        </div>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Update product</button>
+            </div>
+        </form>
     </div>
 
     <!-- Bootstrap JS -->

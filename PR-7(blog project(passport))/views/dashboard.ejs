@@ -11,18 +11,18 @@
         /* General Styles */
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f4f4f9;
+            background-color: #f9fafe;
             margin: 0;
             padding: 0;
         }
 
-        a{
+        a {
             text-decoration: none;
         }
 
         /* Header */
         .header {
-            background: linear-gradient(to right, #2b5876, #4e4376);
+            background: linear-gradient(to right, #4facfe, #00f2fe);
             color: white;
             padding: 15px 30px;
             display: flex;
@@ -34,33 +34,33 @@
         .header .logo {
             font-size: 1.8rem;
             font-weight: bold;
-            text-transform: uppercase;
             letter-spacing: 2px;
         }
 
         .header .logout-btn {
-            background: linear-gradient(to right, #ff9966, #ff5e62);
+            background: linear-gradient(to right, #ff7eb3, #ff758c);
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 10px;
             padding: 8px 15px;
             font-size: 0.9rem;
+            transition: transform 0.3s ease;
         }
 
         .header .logout-btn:hover {
-            background: linear-gradient(to right, #ff5e62, #ff9966);
+            transform: scale(1.1);
         }
 
         /* Sidebar */
         .sidebar {
             height: 100vh;
-            width: 260px;
-            position: fixed;    
+            width: 250px;
+            position: fixed;
             top: 0;
             left: 0;
-            background: linear-gradient(to bottom, #232526, #414345);
+            background: linear-gradient(to bottom, #1e3c72, #2a5298);
             color: white;
-            padding-top: 50px;
+            padding: 50px 0;
             overflow-y: auto;
             box-shadow: 2px 0 6px rgba(0, 0, 0, 0.1);
         }
@@ -68,11 +68,10 @@
         .sidebar .nav-link {
             color: white;
             font-size: 1rem;
-            margin-bottom: 15px;
+            padding: 12px 30px;
             display: flex;
             align-items: center;
             gap: 10px;
-            padding: 10px 20px;
             transition: all 0.3s ease;
         }
 
@@ -87,103 +86,134 @@
 
         /* Main Content */
         .content {
-            margin-left: 260px;
+            margin-left: 250px;
             padding: 30px;
         }
 
         .content h1 {
-            font-size: 2rem;
-            color: #4e4376;
+            font-size: 2.5rem;
+            color: #4facfe;
+            font-weight: bold;
+            margin-bottom: 20px;
         }
 
         .card {
             border: none;
-            border-radius: 10px;
+            border-radius: 15px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            background: linear-gradient(to bottom, #ffffff, #eef2f3);
+            background: linear-gradient(to bottom, #ffffff, #f8f9fa);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
         }
 
         .card img {
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
+            height: 180px;
+            object-fit: cover;
         }
 
         .card-body {
             text-align: center;
+            padding: 20px;
         }
 
         .btn-primary {
-            background: linear-gradient(to right, #6a11cb, #2575fc);
+            background: linear-gradient(to right, #4facfe, #00f2fe);
             border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
         }
 
         .btn-primary:hover {
-            background: linear-gradient(to right, #2575fc, #6a11cb);
+            background: linear-gradient(to right, #00f2fe, #4facfe);
         }
 
         .btn-danger {
-            background: linear-gradient(to right, #ff416c, #ff4b2b);
+            background: linear-gradient(to right, #f12711, #f5af19);
             border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+
+        .btn-danger:hover {
+            background: linear-gradient(to right, #f5af19, #f12711);
         }
 
         .btn-warning {
-            background: linear-gradient(to right, #f7b42c, #fc575e);
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
             border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
         }
 
         .read-more {
-            color: #2575fc;
+            color: #4facfe;
             text-decoration: none;
+            font-weight: bold;
         }
 
         .read-more:hover {
-            color: #6a11cb;
+            color: #00f2fe;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+
+            .content {
+                margin-left: 200px;
+            }
+
+            .header .logo {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
 
 <body>
     <!-- Header -->
-        <div class="header">
-            <div class="logo">Admin Panel</div>
-            <a href="/logout" class="logout-btn">Logout</a>
-        </div>
-
+    <div class="header">
+        <div class="logo">Admin Panel</div>
+        <a href="/logout" class="logout-btn">Logout</a>
+    </div>
 
     <!-- Sidebar -->
     <div class="sidebar">
         <a href="/dashboard" class="nav-link"><i class="bi bi-speedometer2"></i> Dashboard</a>
-        <a href="/add" class="nav-link"><i class="bi bi-file-earmark-plus"></i> Add Blogs</a>
+        <a href="/add" class="nav-link"><i class="bi bi-file-earmark-plus"></i> Add product</a>
         <a href="/manageusers" class="nav-link"><i class="bi bi-people"></i> Manage Users</a>
-        <a href="/settings" class="nav-link"><i class="bi bi-gear"></i> Settings</a>
-        <a href="/help" class="nav-link"><i class="bi bi-question-circle"></i> Help</a>
     </div>
 
     <!-- Main Content -->
     <div class="content">
         <h1>Dashboard</h1>
-        <p>Welcome to the admin panel. Here you can manage your data and make updates as needed.</p>
+        <p>Welcome to the Admin Panel. Manage your blogs, users, and settings here.</p>
 
-        <div class="row">
+        <div class="row g-4">
             <% user.map((val, index) => { %>
                 <div class="col-md-4">
                     <div class="card">
-                        <img src="<%= val.image %>" alt="Blog Image">
+                        <img src="<%= val.image %>" alt="Blog Image" class="w-100">
                         <div class="card-body">
-                            <h5 class="card-title">Blog Name: <%= val.name %></h5>
+                            <h5 class="card-title">product Name: <%= val.name %></h5>
+                            <h5 class="card-title">product Price: <%= val.price %></h5>
                             <p>
-                                <%= val.description.slice(0, 100) %>... 
+                                <%= val.description.slice(0, 100) %>...
                                 <a href="/readmore/<%= val.id %>" class="read-more">Read More</a>
                             </p>
-                            <div class="d-flex justify-content-between">
+                            <div class="d-flex justify-content-around">
                                 <a href="/deletdata/<%= val.id %>" class="btn btn-danger">Delete</a>
                                 <a href="/editpage/<%= val.id %>" class="btn btn-warning">Edit</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                
             <% }) %>
         </div>
     </div>

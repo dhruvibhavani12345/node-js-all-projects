@@ -1,78 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Custom CSS -->
     <style>
         body {
-            background: linear-gradient(135deg, #4a90e2, #a3d9ff);
+            background: linear-gradient(135deg, #dfe9f3, #f6f9fc);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
         }
+
         .card {
-            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
-            border-radius: 12px;
-        }
-        .btn-primary {
-            background-color: #2563eb; /* Tailwind Blue */
             border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            background: #ffffff;
         }
+
+        .card-header h2 {
+            font-weight: bold;
+            color: #2563eb;
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, #2563eb, #357ab8);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
         .btn-primary:hover {
-            background-color: #1d4ed8;
+            background: linear-gradient(to right, #357ab8, #1d4ed8);
         }
+
         .form-control:focus {
-            border-color: #1d4ed8;
-            box-shadow: 0 0 5px rgba(29, 78, 216, 0.5);
+            border-color: #2563eb;
+            box-shadow: 0 0 5px rgba(37, 99, 235, 0.4);
+        }
+
+        .form-label {
+            color: #4a4a4a;
+            font-weight: 600;
+        }
+
+        .error-message {
+            font-size: 0.875rem;
+            color: #e63946;
+            display: none;
+        }
+
+        .text-link {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .text-link:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
+
 <body>
     <div class="container">
-        <div class="row justify-center">
-            <div class="col-md-6">
-                <div class="card p-4 bg-white">
+        <div class="row justify-content-center">
+            <div class="col-lg-5 col-md-7">
+                <div class="card">
                     <div class="card-header text-center mb-4">
-                        <h2 class="text-blue-600">Login Users</h2>
+                        <h2>Login</h2>
                     </div>
                     <div class="card-body">
                         <form action="/loginuser" method="post" onsubmit="return validateForm()">
+                            <!-- Email Field -->
                             <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input 
-                                    type="email" 
-                                    name="email" 
-                                    class="form-control" 
-                                    id="email" 
+                                <label for="email" class="form-label">Email Address</label>
+                                <input type="email" id="email" name="email" class="form-control"
                                     placeholder="Enter your email">
-                                <small id="emailError" class="text-danger d-none">Please enter a valid email address.</small>
+                                <small id="emailError" class="error-message">Please enter a valid email address.</small>
                             </div>
+                            <!-- Password Field -->
                             <div class="mb-3">
                                 <label for="password" class="form-label">Password</label>
-                                <input 
-                                    type="password" 
-                                    name="password" 
-                                    class="form-control" 
-                                    id="password" 
+                                <input type="password" id="password" name="password" class="form-control"
                                     placeholder="Enter your password">
-                                <small id="passwordError" class="text-danger d-none">Password cannot be empty.</small>
+                                <small id="passwordError" class="error-message">Password cannot be empty.</small>
                             </div>
+                            <!-- Submit Button -->
                             <div class="d-grid">
                                 <button type="submit" class="btn btn-primary">Login</button>
                             </div>
                         </form>
+                        <!-- Registration Redirect -->
                         <div class="text-center mt-3">
-                            <a href="/" class="text-blue-600 hover:underline">Register</a>
+                            <span>Don't have an account? </span>
+                            <a href="/" class="text-link">Register here</a>
                         </div>
                     </div>
                 </div>
@@ -82,7 +116,7 @@
 
     <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
+
     <!-- Custom JavaScript -->
     <script>
         function validateForm() {
@@ -92,22 +126,23 @@
 
             // Email validation
             if (!email || !email.includes('@')) {
-                document.getElementById('emailError').classList.remove('d-none');
+                document.getElementById('emailError').style.display = 'block';
                 isValid = false;
             } else {
-                document.getElementById('emailError').classList.add('d-none');
+                document.getElementById('emailError').style.display = 'none';
             }
 
             // Password validation
             if (!password) {
-                document.getElementById('passwordError').classList.remove('d-none');
+                document.getElementById('passwordError').style.display = 'block';
                 isValid = false;
             } else {
-                document.getElementById('passwordError').classList.add('d-none');
+                document.getElementById('passwordError').style.display = 'none';
             }
 
             return isValid;
         }
     </script>
 </body>
+
 </html>

@@ -1,6 +1,6 @@
 const mongoose=require('mongoose')
 
-mongoose.connect('mongodb://localhost/login-blog')
+mongoose.connect('mongodb://localhost/exam-2024')
 
 
 const database=mongoose.connection

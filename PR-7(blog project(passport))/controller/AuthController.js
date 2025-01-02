@@ -3,7 +3,7 @@ const usermodels = require('../models/UserModel')
 
 const path = require('path')
 const fs = require('fs')
-const bloguser = require('../models/blogsdata')
+const bloguser = require('../models/blogusermodel')
 
 const registerpage = (req, res) => {
     return res.render('res')
@@ -45,7 +45,7 @@ const loginuser = async (req, res) => {
 
 const dashboardpage = async (req, res) => {
     try {
-        const { name, description, image } = req.body
+        const { name, description, image  , price} = req.body
 
         const user = await bloguser.find({});
 
@@ -65,9 +65,10 @@ const addblog = (req, res) => {
 
 const addblougesdata = async (req, res) => {
     try {
-        const { name, description } = req.body
+        const { name, description , price} = req.body
         const user = await bloguser.create({
             name: name,
+            price:price,
             description: description,
             image: req.file.path
         })
@@ -80,7 +81,6 @@ const addblougesdata = async (req, res) => {
 
 const deletdata = async (req, res) => {
     try {
-
         let id = req.params.id;
         let single = await bloguser.findById(id);
         fs.unlinkSync(single.image);
@@ -109,23 +109,25 @@ const editpage = async (req, res) => {
 
 const update = async (req, res) => {
     try {
-        const { id, name, description } = req.body;
+        const { id, name, description , price} = req.body;
         if (req.file) {
             let single = await bloguser.findById(id);
             fs.unlinkSync(single.image);
             await bloguser.findByIdAndUpdate(id, {
                 name: name,
+                price:price,
                 description: description,
                 image: req.file.path
             })
             console.log("record update");
             return res.redirect('/dashboard');
         } else {
-            const { id, name, description } = req.body;
+            const { id, name, description , price } = req.body;
             let single = await bloguser.findById(id);
 
             const up = await bloguser.findByIdAndUpdate(id, {
                 name: name,
+                price : price,
                 description: description,
                 image: single.image
             })

@@ -8,4 +8,4 @@ database.on("conneted",(err)=>{
     }
     console.log(`db is connected`);
 })
-module.exports=database
+module.exports = database

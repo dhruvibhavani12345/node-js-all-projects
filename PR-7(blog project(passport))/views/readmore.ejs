@@ -6,29 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Readmore</title>
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(to right, #2b5876, #4e4376);
+            background: linear-gradient(135deg, #eef2f3, #8e9eab);
             margin: 0;
             padding: 0;
+            color: #333;
         }
 
         h1 {
-            color: #fff;
             font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            color: #2c3e50;
             margin-bottom: 30px;
         }
 
-        a{
+        a {
             text-decoration: none;
         }
 
         /* Header */
         .header {
-            background: linear-gradient(to right, #2b5876, #4e4376);
+            background: linear-gradient(to right, #34495e, #2c3e50);
             color: white;
             padding: 15px 30px;
             display: flex;
@@ -44,48 +44,40 @@
             letter-spacing: 2px;
         }
 
-        .header .logout-btn,
-        .header .dashboard-btn {
+        .header .btn {
             background: linear-gradient(to right, #ff9966, #ff5e62);
             color: white;
             border: none;
-            border-radius: 5px;
             padding: 8px 15px;
+            border-radius: 5px;
             font-size: 0.9rem;
+            transition: all 0.3s ease;
         }
 
-        .header .logout-btn:hover,
-        .header .dashboard-btn:hover {
+        .header .btn:hover {
             background: linear-gradient(to right, #ff5e62, #ff9966);
-        }
-
-        .header .dashboard-btn {
-            margin-left: 20px;
         }
 
         /* Card and Layout */
         .card {
+            background: white;
             border: none;
             border-radius: 15px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            background: linear-gradient(135deg, #d2ebff, #9fdbfc);
-            margin: 0 auto;
-            overflow: hidden;
             display: flex;
             flex-direction: row;
-            padding: 20px;
+            overflow: hidden;
+            margin: 0 auto;
             max-width: 900px;
         }
 
         .card img {
             width: 50%;
-            height: auto;
-            border-radius: 15px;
             object-fit: cover;
         }
 
         .card-body {
-            padding-left: 20px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -94,14 +86,32 @@
         .blog-name {
             font-size: 1.8rem;
             font-weight: bold;
-            color: #6a11cb;
+            color: #3498db;
             margin-bottom: 15px;
         }
 
         .blog-description {
             font-size: 1rem;
-            color: #333;
+            color: #2c3e50;
             line-height: 1.6;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(to right, #34495e, #2c3e50);
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 50px;
+        }
+
+        .footer a {
+            color: #f1c40f;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -111,8 +121,8 @@
     <div class="header">
         <div class="logo">Admin Panel</div>
         <div>
-            <a href="/dashboard" class="dashboard-btn">Dashboard</a>
-            <a href="/logout" class="logout-btn">Logout</a>
+            <a href="/dashboard" class="btn">Dashboard</a>
+            <a href="/logout" class="btn">Logout</a>
         </div>
     </div>
 
@@ -121,17 +131,24 @@
         <h1 class="text-center">Readmore</h1>
 
         <div class="card">
-            <div>
-                <img src="/<%= single.image %>" alt="Current Image" class="img-fluid rounded">
-            </div>
+            <!-- Image Section -->
+            <img src="/<%= single.image %>" alt="Blog Image" class="img-fluid">
+
+            <!-- Text Content Section -->
             <div class="card-body">
-                <div class="blog-name"><%= single.blogename %></div>
+                <div class="blog-name"><%= single.productname %></div>
                 <div class="blog-description"><%= single.description %></div>
             </div>
         </div>
     </div>
 
+    <!-- Footer -->
+    <div class="footer">
+        <p>© 2024 Admin Panel. All rights reserved. | <a href="/privacy">Privacy Policy</a></p>
+    </div>
+
     <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
